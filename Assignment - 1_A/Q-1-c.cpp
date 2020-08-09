@@ -23,7 +23,7 @@ int main()
             {
                 cout<<elements[k++]<<" ";
             }
-            if(i <=j )
+            if(i <j)
             {
                 cout<<0<<" ";
             }
