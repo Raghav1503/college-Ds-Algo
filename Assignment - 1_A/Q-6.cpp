@@ -3,30 +3,49 @@ using namespace std;
 
 int main()
 {
-    int rows=0, cols=0, n=0;
-    cout<<"Enter the number of rows of the matrix : ";
-    cin>>rows;
-    cout<<"Enter the number of cols of the matrix : ";
-    cin>>cols;
-    int matrix[rows][cols];
-    cout<<"Enter the elements of the Matrix : "<<endl;
+    int size;
+    cout<<"Enter the size of square matrix : ";
+    cin>>size;
     
-    for(int i=0; i<rows;i++)
+    int matrix[size][size];
+    int rowBegin=0, columnBegin=0, rowEnd=size-1, columnEnd=size-1, num=1;
+    while(rowBegin <= rowEnd && columnBegin <= columnEnd)
     {
-        cout<<"Enter Row "<<i+1<<endl;
-        for(int j=0; j<cols; j++)
-        {   
-            cin>>n;
-            matrix[i][j] = n;
+        for(int i=columnBegin; i<=columnEnd; i++)
+        {
+            matrix[rowBegin][i] = num++;
         }
-        cout<<endl;
-    }
-    cout<<endl;
+        rowBegin++;
 
-    cout<<"MATRIX = "<<endl;
-    for(int i=0; i<rows;i++)
+        for(int i=rowBegin; i<=rowEnd; i++)
+        {
+            matrix[i][columnEnd] = num++;
+        }
+        columnEnd--;
+
+        if(rowBegin <=rowEnd)
+        {
+            for(int i=columnEnd; i>=columnBegin; i--)
+            {
+                matrix[rowEnd][i] = num++;
+            }
+        rowEnd--;
+        }
+        
+        if(columnBegin <=columnEnd)
+        {
+            for(int i=rowEnd; i>=rowBegin; i--)
+            {
+                matrix[i][columnBegin] = num++;
+            }
+        columnBegin++;
+        }
+    }
+    
+    cout<<"\nSPIRAL MATRIX = "<<endl;
+    for(int i=0; i<size;i++)
     {
-        for(int j=0; j<cols; j++)
+        for(int j=0; j<size; j++)
         {
             cout<<matrix[i][j]<<" ";
         }
@@ -34,45 +53,5 @@ int main()
     }
     cout<<endl;
 
-    int t=0, l=0, b=rows-1, r=cols-1, dir=0;
-    while(t<=b && l<=r)
-    {
-        if(dir == 0)
-        {
-            for(int i=l; i<=r; i++)
-            {   
-                cout<<matrix[t][i]<<" ";
-            }
-            t++;
-        }
-        else if(dir == 1)
-        {
-            for(int i=t; i<=b; i++)
-            {
-                cout<<matrix[i][r]<<" ";
-            }
-            r--;
-        }
-        else if(dir == 2)
-        {
-            for(int i=r; i>=l; i--)
-            {
-                cout<<matrix[b][i]<<" ";
-            }
-            b--;
-        }
-        else
-        {
-            for(int i=b; i>=t; i--)
-            {
-                cout<<matrix[i][l]<<" ";
-            }
-            l++;
-        }
-        dir = (dir+1)%4;
-    }
-    cout<<endl;
- 
-    
     return 0;
 }
