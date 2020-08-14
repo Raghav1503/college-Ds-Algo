@@ -17,45 +17,45 @@ class LinkedList:
             length += 1
             currentNode = currentNode.next_node
 
-        return length
-    
-    def insertBegin(self, newNode):
-        temp_node = self.head
-        self.head = newNode
-        self.head.next_node = temp_node
-        del temp_node
+        return length   
 
-        return
-
-    def insertAt(self, newNode, pos):
-        if(pos == 0):
-            self.insertBegin(newNode)
-            return 
-        
-        length = self.list_length()
-        if(pos < 0 or pos > length):
-            print("Index out of Bounds")
+    def insert(self, newNode, atStart=False, inBetween=False, pos=1):
+        if atStart:
+            temp_node = self.head
+            self.head = newNode
+            self.head.next_node = temp_node
+            del temp_node
 
             return
+        
+        if inBetween:
+            if(pos == 0):
+                self.insert(newNode, atStart=True)
+                
+                return 
+        
+            length = self.list_length()
+            if(pos < 0 or pos > length):
+                print("Index out of Bounds")
 
-        currentNode = self.head
-        currentPosition = 0
+                return
 
-        while True:
-            if currentPosition == pos:
-                previousNode.next_node  = newNode
-                newNode.next_node = currentNode
+            currentNode = self.head
+            currentPosition = 0
+
+            while True:
+                if currentPosition == pos:
+                    previousNode.next_node  = newNode
+                    newNode.next_node = currentNode
+                    
+                    break
+
+                previousNode = currentNode
+                currentNode = currentNode.next_node
+                currentPosition += 1
+
+            return
             
-                break
-
-            previousNode = currentNode
-            currentNode = currentNode.next_node
-            currentPosition += 1
-
-        return    
-
-
-    def insert(self, newNode, inbetween=False, pos=1):
         if self.head is None:
             self.head = newNode
         else:
@@ -66,7 +66,7 @@ class LinkedList:
                 lastNode = lastNode.next_node
             lastNode.next_node = newNode
     
-    def print(self):
+    def printList(self):
         if self.head is None:
             print("List is Empty...")
             return 
@@ -103,9 +103,9 @@ if __name__=='__main__':
     linked_list.insert(node4)
 
     node5 = Node(5)
-    linked_list.insertBegin(node5)
+    linked_list.insert(node5, atStart=True)
 
     node5 = Node(35)
-    linked_list.insertAt(node5, pos=4)
+    linked_list.insert(node5, inBetween=True ,pos=4)
     
-    linked_list.print()
+    linked_list.printList()
