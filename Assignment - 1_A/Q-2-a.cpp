@@ -8,7 +8,6 @@ int main()
     cin>>rows;
     cout<<"Enter the number of cols of the matrix : ";
     cin>>cols;
-    int matrix[rows][cols];
     cout<<"Enter the elements of the Matrix : "<<endl;
     
     int sparse_matrix[100][3], k=0;
