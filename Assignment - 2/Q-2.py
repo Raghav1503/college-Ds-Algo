@@ -6,56 +6,8 @@ class Node:
 class LinkedList:
     def __init__(self):
         self.head = None
-
-    def list_length(self):
-        currentNode = self.head
-        length = 0
-        
-        while True:
-            if currentNode.next_node is None:
-                break
-            length += 1
-            currentNode = currentNode.next_node
-
-        return length   
-
-    def insert(self, newNode, atStart=False, inBetween=False, pos=1):
-        if atStart:
-            temp_node = self.head
-            self.head = newNode
-            self.head.next_node = temp_node
-            del temp_node
-
-            return
-        
-        if inBetween:
-            if(pos == 0):
-                self.insert(newNode, atStart=True)
-                
-                return 
-        
-            length = self.list_length()
-            if(pos < 0 or pos > length):
-                print("Index out of Bounds")
-
-                return
-
-            currentNode = self.head
-            currentPosition = 0
-
-            while True:
-                if currentPosition == pos:
-                    previousNode.next_node  = newNode
-                    newNode.next_node = currentNode
-                    
-                    break
-
-                previousNode = currentNode
-                currentNode = currentNode.next_node
-                currentPosition += 1
-
-            return
-            
+    
+    def insert(self, newNode):
         if self.head is None:
             self.head = newNode
         else:
@@ -65,8 +17,17 @@ class LinkedList:
                     break
                 lastNode = lastNode.next_node
             lastNode.next_node = newNode
+
+    def listLength(self):
+        currentNode = self.head
+        count = 0
+        while currentNode is not None:
+            count = count + 1
+            currentNode = currentNode.next_node
+        
+        return count
     
-    def printList(self):
+    def print(self):
         if self.head is None:
             print("List is Empty...")
             return 
@@ -79,6 +40,12 @@ class LinkedList:
             print(current_node.data, end=" ")
             current_node = current_node.next_node
         print()
+    
+    
+    
+    def count_and_delete(self, key):
+
+        
 
 if __name__=='__main__':
 
@@ -96,16 +63,23 @@ if __name__=='__main__':
     node4 = Node(40)
     linked_list.insert(node4)
 
-    node4 = Node(50)
-    linked_list.insert(node4)
+    node5 = Node(50)
+    linked_list.insert(node5)
 
-    node4 = Node(60)
-    linked_list.insert(node4)
+    node6 = Node(60)
+    linked_list.insert(node6)
 
-    node5 = Node(5)
-    linked_list.insert(node5, atStart=True)
+    node7 = Node(100)
+    linked_list.insert(node7)
 
-    node5 = Node(35)
-    linked_list.insert(node5, inBetween=True ,pos=4)
+    node8 = Node(200)
+    linked_list.insert(node8)
+
+    node9 = Node(500)
+    linked_list.insert(node9)
     
-    linked_list.printList()
+    linked_list.print()
+    linked_list.middleNum_method1()
+    linked_list.middleNum_method2()
+    
+
