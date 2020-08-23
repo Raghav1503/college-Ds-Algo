@@ -6,56 +6,8 @@ class Node:
 class LinkedList:
     def __init__(self):
         self.head = None
-
-    def list_length(self):
-        currentNode = self.head
-        length = 0
-        
-        while True:
-            if currentNode.next_node is None:
-                break
-            length += 1
-            currentNode = currentNode.next_node
-
-        return length
     
-    def insertBegin(self, newNode):
-        temp_node = self.head
-        self.head = newNode
-        self.head.next_node = temp_node
-        del temp_node
-
-        return
-
-    def insertAt(self, newNode, pos):
-        if(pos == 0):
-            self.insertBegin(newNode)
-            return 
-        
-        length = self.list_length()
-        if(pos < 0 or pos > length):
-            print("Index out of Bounds")
-
-            return
-
-        currentNode = self.head
-        currentPosition = 0
-
-        while True:
-            if currentPosition == pos:
-                previousNode.next_node  = newNode
-                newNode.next_node = currentNode
-            
-                break
-
-            previousNode = currentNode
-            currentNode = currentNode.next_node
-            currentPosition += 1
-
-        return    
-
-
-    def insert(self, newNode, inbetween=False, pos=1):
+    def insert(self, newNode):
         if self.head is None:
             self.head = newNode
         else:
@@ -65,6 +17,15 @@ class LinkedList:
                     break
                 lastNode = lastNode.next_node
             lastNode.next_node = newNode
+
+    def listLength(self):
+        currentNode = self.head
+        count = 0
+        while currentNode is not None:
+            count = count + 1
+            currentNode = currentNode.next_node
+        
+        return count
     
     def print(self):
         if self.head is None:
@@ -79,22 +40,36 @@ class LinkedList:
             print(current_node.data, end=" ")
             current_node = current_node.next_node
         print()
-
-    def deleteEnd(self):
-        lastNode = self.head
-        previousNode = None
-
-        while lastNode.next_node is not None:
-            previousNode = lastNode
-            lastNode = lastNode.next_node
-        
-
-        previousNode.next_node = None
-        del lastNode
     
-    def deleteBegin(self):
-        temp = self.head
-        head = head.next
+    def middleNum_method1(self):
+        # This Method Uses Remainder idea.
+        len = self.listLength()
+        middleIndex = 0
+
+        if len%2 == 0:
+            middleIndex = len/2
+        else:
+            middleIndex = (len / 2) + 1
+
+        currentNode = self.head
+        for i in range(int(middleIndex)-1):
+            currentNode = currentNode.next_node
+
+        print("Middle Node By Traversing Method : ", currentNode.data)
+
+#        return int(middleIndex)
+
+    def middleNum_method2(self):
+        currentNode = self.head
+        middleNode  = self.head
+        while currentNode.next_node is not None:
+            middleNode  = middleNode.next_node 
+            currentNode = currentNode.next_node
+            currentNode = currentNode.next_node
+            
+        
+        print("Middle Node By Pointer Method    : ", middleNode.data)
+        
 
 if __name__=='__main__':
 
@@ -112,19 +87,23 @@ if __name__=='__main__':
     node4 = Node(40)
     linked_list.insert(node4)
 
-    node4 = Node(50)
-    linked_list.insert(node4)
+    node5 = Node(50)
+    linked_list.insert(node5)
 
-    node4 = Node(60)
-    linked_list.insert(node4)
+    node6 = Node(60)
+    linked_list.insert(node6)
 
-    node5 = Node(5)
-    linked_list.insertBegin(node5)
+    node7 = Node(100)
+    linked_list.insert(node7)
 
-    node5 = Node(35)
-    linked_list.insertAt(node5, pos=4)
+    node8 = Node(200)
+    linked_list.insert(node8)
+
+    node9 = Node(500)
+    linked_list.insert(node9)
+    
     linked_list.print()
+    linked_list.middleNum_method1()
+    linked_list.middleNum_method2()
+    
 
-
-    linked_list.deleteEnd()
-    linked_list.print()
