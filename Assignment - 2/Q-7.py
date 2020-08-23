@@ -25,32 +25,6 @@ class PolyNomial:
             
         currentNode = self.head
         while currentNode is not None:
-            if  currentNode.power == 2 or currentNode.power == 3:
-                a = chr(0x00b0 + currentNode.power)
-            elif currentNode.power < 0:
-                if  currentNode.power*-1 == 2 or currentNode.power*1 == 3:
-                    a = chr(0x207B)
-                    num = chr(0x00b0 + currentNode.power*-1)
-                else:
-                    a = chr(0x207B)
-                    num = chr(0x2070 + currentNode.power*-1)
-            else:
-                a = chr(0x2070 + currentNode.power)
-
-            if currentNode.nextNode is None:
-                if currentNode.power < 0:
-                    print(str(currentNode.coefficent) + "x"+a+num)
-                elif currentNode.power == 0:
-                    print(str(currentNode.coefficent))    
-                else:
-                    print(str(currentNode.coefficent) + "x"+a)
-            else:
-                if currentNode.power < 0:
-                    print(str(currentNode.coefficent) + "x"+a+num, end=" + ")
-                elif currentNode.power == 0:
-                    print(str(currentNode.coefficent), end=" + ")
-                else:
-                    print(str(currentNode.coefficent) + "x"+a, end=" + ")
             currentNode = currentNode.nextNode
     
 if __name__ == '__main__':
