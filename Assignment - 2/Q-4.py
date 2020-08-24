@@ -23,7 +23,6 @@ class LinkedList:
             return
             
         currentNode = self.head
-        print("Linked List : ", end=" ")
         while currentNode is not None:
                 print(currentNode.data, end=" ")
                 currentNode = currentNode.nextNode
@@ -36,7 +35,7 @@ class LinkedList:
         # Null->1->2->3-Null
         while currentNode is not None:
             nextNode = currentNode.nextNode #(2)
-            currentNode.next = previousNode #(Null) Null<-1 2
+            currentNode.nextNode = previousNode #(Null) Null<-1 2
             previousNode = currentNode
             currentNode = nextNode
         
@@ -53,8 +52,9 @@ if __name__ == '__main__':
     linkedList.insert(Node(4))
     linkedList.insert(Node(5))
 
+    print("Linked List : ", end=" ")
     linkedList.print()
-
+    print("Reverse Linked List : ", end=" ")
     linkedList.reverse()
 
     linkedList.print()
