@@ -32,10 +32,9 @@ class LinkedList:
     def reverse(self):
         currentNode = self.head # (1)
         previousNode = None
-        # Null->1->2->3-Null
         while currentNode is not None:
-            nextNode = currentNode.nextNode #(2)
-            currentNode.nextNode = previousNode #(Null) Null<-1 2
+            nextNode = currentNode.nextNode 
+            currentNode.nextNode = previousNode 
             previousNode = currentNode
             currentNode = nextNode
         

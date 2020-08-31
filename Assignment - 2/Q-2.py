@@ -41,18 +41,16 @@ class LinkedList:
             current_node = current_node.next_node
         print()
     
-    
-    
-    def count_and_delete(self, key):
 
+    def count_and_delete(self, key):
+		pass
         
 
 if __name__=='__main__':
-
-    linked_list = LinkedList()
+	linked_list = LinkedList()
 
     node1 = Node(10)
-    linked_list.insert(node1)
+    linked_list.insert(node1)	
 
     node2 = Node(20)
     linked_list.insert(node2)
