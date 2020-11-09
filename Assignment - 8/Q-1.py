@@ -32,9 +32,31 @@ class Binary_Search_Tree:
         else:
             self._insert(data, self.root)
     
-    def find_element(self, data, current_node):
-        pass
-    
+    def _search_tree(self, data, current_node):
+        if current_node.data == data:
+            print(f'Found element {data}.')
+            return True
+            print("IN HERE")
+
+        elif current_node.data > data and current_node.left is not None:
+            # search to the left
+            self._search_tree(data, current_node.left)
+        elif current_node.data < data and current_node.right is not None:
+            # search to the right
+            self._search_tree(data, current_node.right)
+        return False
+
+    def search_tree(self, data):
+        if self.root is None:
+            return
+        else:
+            found = self._search_tree(data, self.root)
+            print("in here")
+            print(found)
+            if found:
+                print("hello")
+                return True
+
     def delete_node(self, data):
         pass
     
@@ -94,3 +116,4 @@ if __name__ == '__main__':
     bst.print_tree_in_order_traversal()
     bst.print_tree_pre_order_traversal()
     bst.print_tree_post_order_traversal()
+    bst.search_tree(88)
